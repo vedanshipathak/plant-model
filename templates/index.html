@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌿 Plant Disease Detection</h1>
+            <p>Upload an image of a plant leaf to detect diseases.</p>
+        </div>
+        <div class="upload-box">
+            <form id="upload-form">
+                <label for="file" class="file-label">
+                    <span class="file-button">Choose Image</span>
+                    <span id="file-name">No file chosen</span>
+                </label>
+                <input type="file" id="file" name="file" accept="image/*" required>
+                <button type="submit" class="predict-button">Detect Disease</button>
+            </form>
+        </div>
+        <div id="result" class="result-box">
+            <p id="result-text">Your prediction will appear here.</p>
+            <div id="confidence-bar-container">
+                <div id="confidence-bar"></div>
+            </div>
+            <p id="confidence-text">Confidence: <span id="confidence-value">0%</span></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('file').addEventListener('change', function(e) {
+            const fileName = e.target.files[0].name;
+            document.getElementById('file-name').textContent = fileName;
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const resultText = document.getElementById('result-text');
+            const confidenceBar = document.getElementById('confidence-bar');
+            const confidenceValue = document.getElementById('confidence-value');
+            resultText.textContent = 'Analyzing...';
+            confidenceBar.style.width = '0%';
+            confidenceValue.textContent = '0%';
+
+            var formData = new FormData();
+            var fileInput = document.getElementById('file');
+            formData.append('file', fileInput.files[0]);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    resultText.textContent = 'Error: ' + data.error;
+                } else {
+                    resultText.textContent = 'Prediction: ' + data.prediction;
+                    const confidence = Math.round(data.confidence); // Round to nearest integer
+                    confidenceBar.style.width = confidence + '%';
+                    confidenceValue.textContent = confidence + '%';
+                }
+            })
+            .catch(error => {
+                resultText.textContent = 'Error: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>

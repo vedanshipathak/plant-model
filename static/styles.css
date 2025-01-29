@@ -1,0 +1,130 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0faf0; /* Light green background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #2e7d32; /* Dark green */
+}
+
+.header p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Upload Box */
+.upload-box {
+  margin: 20px 0;
+}
+
+.file-label {
+  display: block;
+  background: #e8f5e9; /* Light green */
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.file-label:hover {
+  background: #c8e6c9; /* Slightly darker green */
+}
+
+.file-button {
+  background: #2e7d32; /* Dark green */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.file-button:hover {
+  background: #1b5e20; /* Darker green */
+}
+
+#file-name {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Predict Button */
+.predict-button {
+  background: #2e7d32; /* Dark green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.predict-button:hover {
+  background: #1b5e20; /* Darker green */
+}
+
+/* Result Box */
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #e8f5e9; /* Light green */
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #2e7d32; /* Dark green */
+}
+
+#result-text {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Confidence Bar */
+#confidence-bar-container {
+  background: #c8e6c9; /* Light green */
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+#confidence-bar {
+  height: 10px;
+  background: #2e7d32; /* Dark green */
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+#confidence-text {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
