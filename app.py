@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import json
 import os
+from urllib.parse import quote
 
 app = Flask(__name__)
 
@@ -13,7 +14,8 @@ def load_tflite_model(model_path):
     interpreter.allocate_tensors()
     return interpreter
 
-# Load the compressed TFLite model
+# interpreter = tf.lite.Interpreter(model_path=r'C:\Users\VEDANSHI\OneDrive\Desktop\plant\model.tflite')
+# # Load the compressed TFLite model
 interpreter = load_tflite_model(r'C:\Users\VEDANSHI\OneDrive\Desktop\plant\model.tflite')
 
 # Load class labels
@@ -78,9 +80,6 @@ def predict():
         })
     except Exception as e:
         return jsonify({'error': str(e)})
-# Required for Vercel
-def handler(event, context):
-    return app(event, context)
 
 if __name__ == '__main__':
     app.run(debug=True)

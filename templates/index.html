@@ -20,6 +20,7 @@
                     <span id="file-name">No file chosen</span>
                 </label>
                 <input type="file" id="file" name="file" accept="image/*" required>
+                <div id="image-preview" class="image-preview"></div>
                 <button type="submit" class="predict-button">Detect Disease</button>
             </form>
         </div>
@@ -33,8 +34,15 @@
     </div>
     <script>
         document.getElementById('file').addEventListener('change', function(e) {
-            const fileName = e.target.files[0].name;
-            document.getElementById('file-name').textContent = fileName;
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('file-name').textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('image-preview').innerHTML = '<img src="' + event.target.result + '" alt="Uploaded Image" class="preview-image">';
+                };
+                reader.readAsDataURL(file);
+            }
         });
 
         document.getElementById('upload-form').addEventListener('submit', function(e) {
@@ -60,7 +68,7 @@
                     resultText.textContent = 'Error: ' + data.error;
                 } else {
                     resultText.textContent = 'Prediction: ' + data.prediction;
-                    const confidence = Math.round(data.confidence); // Round to nearest integer
+                    const confidence = Math.round(data.confidence);
                     confidenceBar.style.width = confidence + '%';
                     confidenceValue.textContent = confidence + '%';
                 }
@@ -70,5 +78,17 @@
             });
         });
     </script>
+    <style>
+        .image-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </body>
 </html>
