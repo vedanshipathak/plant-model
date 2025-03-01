@@ -1,5 +1,9 @@
 # Plant Disease Detection Model
 
+## Presentation
+[Plant Disease Detection (1).pptx](https://github.com/user-attachments/files/19037468/Plant.Disease.Detection.1.pptx)
+
+
 ## Overview
 This project is focused on detecting plant diseases using deep learning models. The model utilizes the Xception architecture with transfer learning to classify diseases in various plants based on images of their leaves. It uses the PlantVillage dataset, which contains images of plants with different diseases.
 
