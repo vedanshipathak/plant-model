@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Plant Disease Detection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>🌿 Plant Disease Detection</h1>
+            <p>Upload a leaf image 🍃 to detect diseases.</p>
+        </div>
+
+        <div class="upload-box text-center">
+            <form id="upload-form">
+                <label for="plant-select" class="form-label">🌱 Supported Plant Types for This Model:</label>
+                <select id="plant-select" class="form-select">
+                    <option value="apple">🍏 Apple</option>
+                    <option value="corn">🌽 Corn</option>
+                    <option value="grape">🍇 Grape</option>
+                    <option value="peach">🍑 Peach</option>
+                    <option value="orange">🍊 Orange</option>
+                    <option value="raspberry">🍓 Raspberry</option>
+                    <option value="strawberry">🍓 Strawberry</option>
+                    <option value="tomato">🍅 Tomato</option>
+                    <option value="potato">🥔 Potato</option>
+                    <option value="pepper_bell">🫑 Pepper Bell</option>
+                </select>
+
+                <label for="file" class="file-label mt-3">
+                    <span class="file-button btn btn-primary">📸 Choose Image</span>
+                    <span id="file-name">No file chosen</span>
+                </label>
+                <input type="file" id="file" name="file" accept="image/*" hidden>
+                
+                <div id="image-preview" class="image-preview mt-3">
+                  <img id="preview-img" src="" alt="Uploaded Image" style="display: none;">
+              </div>
+              
+                <button type="submit" class="btn btn-success mt-3">🔍 Detect Disease</button>
+            </form>
+        </div>
+
+        <div id="result" class="result-box text-center mt-4">
+            <p id="result-text">Your prediction will appear here.</p>
+            <div id="confidence-bar-container" class="progress mt-2">
+                <div id="confidence-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+            <p id="confidence-text">Confidence: <span id="confidence-value">0%</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
