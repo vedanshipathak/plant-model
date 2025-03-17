@@ -52,10 +52,6 @@ The model is deployed as a web application using Flask. Users can upload images 
    python app.py
    ```
 
-5. Access the web application by navigating to `http://127.0.0.1:5000/` in your web browser.
-
-
-
 ## Acknowledgements
 
 - The PlantVillage dataset for providing the images used in training.
