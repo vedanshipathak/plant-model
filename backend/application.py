@@ -24,7 +24,7 @@ if not os.path.exists(MODEL_PATH):
             f.write(chunk)
 
 # Load the model
-model = tf.keras.models.load_model(MODEL_PATH)
+model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 # Load disease names from JSON
 with open("class_labels.json", "r") as f:
@@ -43,7 +43,8 @@ def predict():
         return jsonify({"error": "No file uploaded"}), 400
     
     file = request.files["file"]
-    image = Image.open(io.BytesIO(file.read()))
+    image = Image.open(io.BytesIO(file.read())).convert('RGB')
+    
     processed_image = preprocess_image(image)
     
     prediction = model.predict(processed_image)
